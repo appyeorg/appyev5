@@ -7,6 +7,7 @@ const mirrors = [
   "https://codeberg.org/lucky/Appye/raw/branch/main/",
 ]
 
+//TODO: Actually implement this
 const proxies = [
   "https://corsproxy.io/?",
   "https://api.allorigins.win/raw?url="
@@ -110,3 +111,5 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
     }
   }
 }
+
+await InitFs();

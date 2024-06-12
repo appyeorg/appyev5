@@ -1,1 +1,1 @@
-{"files": ["createIndex.sh", "files.json", "folders.json", "README.md", "scripts/install.js"]}
+{"files": ["createIndex.sh", "files.json", "folders.json", "README.md", "scripts/install.js", "user/system/deps/winbox.js", "user/system/stub.js"]}
