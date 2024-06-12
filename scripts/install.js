@@ -32,5 +32,12 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
 
 async function InitFs() {
     const fs = await navigator.storage.getDirectory();
+    user = fs.getDirectoryHandle('user', { create: true });
+    userApps = fs.getDirectoryHandle('user/apps', { create: true });
+    userCLI = fs.getDirectoryHandle('user/cli', { create: true });
+    userSystem = fs.getDirectoryHandle('user/system', { create: true });
     //Find a mirror.
+    for(currentMirror in mirrors){
+      
+    }
   }
