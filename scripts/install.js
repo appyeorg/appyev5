@@ -1,3 +1,11 @@
+
+mirrors = [
+  "https://git.basicfan.eu.org/KUKHUA/Appye/raw/branch/main/",
+  "https://raw.githubusercontent.com/appyeorg/appyev5/main/",
+  "https://raw.githack.com/appyeorg/appyev5/main/"
+]
+
+
 async function makeFile(opfsRoot, fileName, fileType, content) {
     // Get a handle to the file
      let fileHandle = await opfsRoot.getFileHandle(fileName, { create: true });
