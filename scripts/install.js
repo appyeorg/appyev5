@@ -15,8 +15,25 @@ const proxies = [
 
 
 async function makeFile(opfsRoot, fileName, fileType, content) {
+  let currentFolder;
+    if(fileName.includes("/")){
+      let fileParts = fileName.split("/");
+      //remove the last part
+      fileName = fileParts.pop();
+      currentFolder = opfsRoot;
+      for(let filePart of fileParts){
+        try {
+          currentFolder = await currentFolder.getDirectoryHandle(filePart, { create: true });
+        } catch (error) {
+          console.error("Error: " + error);
+        }
+      }
+     } else {
+      currentFolder = opfsRoot;
+     }
+
     // Get a handle to the file
-     let fileHandle = await opfsRoot.getFileHandle(fileName, { create: true });
+     let fileHandle = await currentFolder.getFileHandle(fileName, { create: true });
   
     // Get a writable stream
     let writable = await fileHandle.createWritable();
@@ -75,11 +92,9 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
         console.log("Creating folders: ",folderParts);
         let currentFolder = fs;
         console.log("Current folder: ", currentFolder);
-        for(let folderPart in folderParts){
+        for(let folderPart of folderParts){
           try {
-            if (!(await currentFolder.queryPermission({ mode: 'readwrite' }))) {
               currentFolder = await currentFolder.getDirectoryHandle(folderPart, { create: true });
-            }
           } catch (error) {
             console.error("Error: " + error);
           }
@@ -87,9 +102,7 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
       } else {
         console.log("Creating folder: " + folder);
        try {
-        if (!(await fs.queryPermission({ mode: 'readwrite' }))) {
           await fs.getDirectoryHandle(folder, { create: true });
-        }
        } catch (error) {
          console.error("Error: " + error);
       }
@@ -102,9 +115,7 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
       let contnetMimeType = content.headers.get("Content-Type");
       console.log("File: " + file + " MimeType: " + contnetMimeType);
       try {
-        if (!(await fs.queryPermission({ mode: 'readwrite' }))) {
           makeFile(fs, file, contnetMimeType, contentBlob);
-        }
       } catch (error) {
         console.error("Error: " + error);
       }

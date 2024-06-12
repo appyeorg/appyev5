@@ -1,24 +1,28 @@
 //This file is a stub, which launches Appye on the page. It must be ran by an exstenion, userscript, bookmarklet,
 // or any other method of running JavaScript on a page. 
 
-//Get OPFS root, ya'know so we can actually get files.
-async function loadAppye() {
+async function loadResources() {
+    //Get OPFS root, ya'know so we can actually get files.
     const fs = await navigator.storage.getDirectory();
-    //Load /user/system/deps/winbox.js into current document.
-    let winboxFileObject = fs.getFileHandle("user/system/deps/winbox.js", { create: false })
-    winboxFileObject.getFile().then(file => {
-    document.createElement("script").src = URL.createObjectURL(file);
-    })
+    let userDir = await fs.getDirectoryHandle("user");
+    let systemDir = await userDir.getDirectoryHandle("system");
+    let depsDir = await systemDir.getDirectoryHandle("deps");
+    let toLoad = ["winbox.js", "providedFuncs.js"];
 
-    //Lets open up a test window.
-    let winbox = new WinBox("Test Window", {
-        root: document.body,
-        x: "center",
-        y: "center",
-        width: "50%",
-        height: "50%",
-        onclose: function() {
-            console.log("Window closed");
+    for(let file of toLoad){
+        let fileObject = await depsDir.getFileHandle(file, { create: false });
+        let fileFile = await fileObject.getFile();
+        let fileBlob = await fileFile.text();
+        if(file.endsWith(".js")){
+            let fileDocumentObject = document.createElement("script");
+            fileDocumentObject.src = URL.createObjectURL(new Blob([fileBlob], { type: "application/javascript" }));
+            document.head.appendChild(fileDocumentObject);
+        } else if(file.endsWith(".css")){
+            let fileDocumentObject = document.createElement("style");
+            fileDocumentObject.textContent = fileBlob;
+            document.head.appendChild(fileDocumentObject);
         }
-    });
+    }
 }
+
+await loadResources();
