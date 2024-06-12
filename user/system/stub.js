@@ -1,4 +1,4 @@
-//This file is a stub, which launches Appye on the page. It must be ran by an exstenion, userscript, bookmarklet,
+//This file is a stub, which launches Appye on the page. It must be ran by an extension, userscript, bookmarklet,
 // or any other method of running JavaScript on a page. 
 
 async function loadResources() {
