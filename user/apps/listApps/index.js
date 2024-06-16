@@ -1,3 +1,4 @@
+async function loadListApp(){
 const fs = await navigator.storage.getDirectory();
 let userDir = await fs.getDirectoryHandle("user");
 let appDir = await userDir.getDirectoryHandle("apps");
@@ -51,4 +52,5 @@ new WinBox({
     url: URL.createObjectURL(new Blob([htmlDiv.outerHTML], { type: "text/html" })),
 })
 
-
+}
+await loadListApp();
