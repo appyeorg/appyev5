@@ -26,4 +26,10 @@ async function loadResources() {
 }
 
 await loadResources();
+// Wait a bit for the resources to load
+await new Promise(resolve => setTimeout(resolve, 1000));
 await updateAppIndex();
+// Wait a bit for the app index to be updated
+await new Promise(resolve => setTimeout(resolve, 1000));
+//Now, as a test, print window.appIndex to the console.
+console.log(window.appIndex);
