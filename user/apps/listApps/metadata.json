@@ -4,6 +4,6 @@
     "version": "1.0.0",
     "description": "An app to list installed applications",
     "author": "Pascal",
-    "icon": "user/app/listApps/icon.png",
-    "entryPoint": "user/app/listApps/index.js"
+    "icon": "icon.png",
+    "entryPoint": "index.js"
 }
