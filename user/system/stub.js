@@ -6,8 +6,8 @@ async function loadResources() {
     const fs = await navigator.storage.getDirectory();
     let userDir = await fs.getDirectoryHandle("user");
     let systemDir = await userDir.getDirectoryHandle("system");
-    let depsDir = await systemDir.getDirectoryHandle("deps");
-    let toLoad = ["winbox.js", "providedFuncs.js","appye.css"];
+    let depsDir = await systemDir.getDirectoryHandle("dependencies");
+    let toLoad = ["winbox.js","appye.css", "makeFile.js", "updateAppIndex.js"];
 
     for(let file of toLoad){
         let fileObject = await depsDir.getFileHandle(file, { create: false });
@@ -26,7 +26,4 @@ async function loadResources() {
 }
 
 await loadResources();
-
-new WinBox("Custom CSS (Class)", {
-    class: "appye-window",
-});
+await updateAppIndex();
