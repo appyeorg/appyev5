@@ -7,6 +7,8 @@ async function loadResources() {
     let userDir = await fs.getDirectoryHandle("user");
     let systemDir = await userDir.getDirectoryHandle("system");
     let depsDir = await systemDir.getDirectoryHandle("dependencies");
+    
+    //TODO: Replace toLoad with a loop that gets all files in the dependencies directory.
     let toLoad = ["winbox.js", "makeFile.js", "updateAppIndex.js", "openApp.js", "appye.css"];
 
     for(let file of toLoad){
