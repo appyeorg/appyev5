@@ -1,1 +1,1 @@
-{"files": ["createIndex.sh", "files.json", "folders.json", "README.md", "scripts/install.js", "user/apps/listApps/metadata.json", "user/system/deps/providedFuncs.js", "user/system/deps/winbox.js", "user/system/stub.js"]}
+{"files": ["createIndex.sh", "files.json", "folders.json", "README.md", "scripts/install.js", "user/apps/listApps/index.js", "user/apps/listApps/metadata.json", "user/system/deps/appye.css", "user/system/deps/providedFuncs.js", "user/system/deps/winbox.js", "user/system/stub.js"]}

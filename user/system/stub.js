@@ -7,7 +7,7 @@ async function loadResources() {
     let userDir = await fs.getDirectoryHandle("user");
     let systemDir = await userDir.getDirectoryHandle("system");
     let depsDir = await systemDir.getDirectoryHandle("deps");
-    let toLoad = ["winbox.js", "providedFuncs.js"];
+    let toLoad = ["winbox.js", "providedFuncs.js","appye.css"];
 
     for(let file of toLoad){
         let fileObject = await depsDir.getFileHandle(file, { create: false });
@@ -26,3 +26,7 @@ async function loadResources() {
 }
 
 await loadResources();
+
+new WinBox("Custom CSS (Class)", {
+    class: "appye-window",
+});
