@@ -13,7 +13,7 @@ async function updateAppIndex(){
       // Get the app's metadata.json
       let metadataFile = await currentAppDirHandle.getFileHandle("metadata.json", { create: false });
       let metadata = await metadataFile.getFile();
-      window.appIndex[currentAppDir.name] = await metadata.text();
+      window.appIndex[currentAppDir.name] = JSON.parse(await metadata.text());
     }
   }
 }
