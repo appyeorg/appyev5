@@ -5,5 +5,5 @@
     "description": "An app to list installed applications",
     "author": "Pascal",
     "icon": "user/app/listApps/icon.png",
-    "entrypoint": "user/app/listApps/index.js"
+    "entryPoint": "user/app/listApps/index.js"
 }
