@@ -53,4 +53,5 @@ new WinBox({
 })
 
 }
-await loadListApp();
+
+loadListApp();
