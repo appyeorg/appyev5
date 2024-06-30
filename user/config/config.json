@@ -1,0 +1,4 @@
+{
+    "included_Dependencies": ["winbox.js", "makeFile.js", "updateAppIndex.js", "openApp.js", "terminal.js", "appye.css"],
+    "auto_Start_Apps": ["listApps"]
+}
