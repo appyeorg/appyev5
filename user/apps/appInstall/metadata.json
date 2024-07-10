@@ -1,0 +1,9 @@
+{
+    "name": "App Installer",
+    "id": "appInstall",
+    "version": "1.0.0",
+    "description": "A app to isntall applications from the internet, folder, or zip file.",
+    "author": "Pascal",
+    "icon": "icon.png",
+    "entryPoint": "index.js"
+}
