@@ -6,15 +6,14 @@ let config;
 async function loadResources() {
     //Get OPFS root, ya'know so we can actually get files.
     const fs = await navigator.storage.getDirectory();
-    let configDir,depsDir;
+    let configDir,depsDir,systemDir,userDir;
     try {
-        configDir = await fs.getDirectoryHandle("config");
         userDir = await fs.getDirectoryHandle("user");
+        configDir = await userDir.getDirectoryHandle("config");
         systemDir = await userDir.getDirectoryHandle("system");
         depsDir = await systemDir.getDirectoryHandle("dependencies");
     } catch(e){
         console.error(`ERROR: Could not locate required directories. Please ensure that Appye is installed correctly.`);
-        return;
     }
 
     try {
@@ -58,14 +57,17 @@ await new Promise(resolve => setTimeout(resolve, 1000));
 //Now, as a test, print window.appIndex to the console.
 console.log(window.appIndex);
 
-//Let's start the apps that requested to be started.
-if(config.auto_Start_Apps){
-    for(let app in config.auto_Start_Apps){
-        if(window.appIndex[app]){
-            console.log(`Starting ${app}...`);
-            openApp(app);
+// Let's start the apps that requested to be started.
+if (config.auto_Start_Apps) {
+    for (let app in config.auto_Start_Apps) {
+        let appID = config.auto_Start_Apps[app];
+        if (window.appIndex[appID]) { 
+            console.log(`Starting ${window.appIndex[appID].name}...`); 
+            openApp(appID); 
         } else {
-            console.error(`ERROR: Could not start ${app}. App not found.`);
+            // Added a check to prevent TypeError if appID is not found in window.appIndex
+            let appName = window.appIndex[appID] ? window.appIndex[appID].name : 'Unknown App';
+            console.error(`ERROR: Could not start ${appName}. App not found.`);
         }
     }
 } else {
