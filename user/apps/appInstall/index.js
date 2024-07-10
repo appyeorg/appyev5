@@ -37,5 +37,14 @@ htmlDiv.appendChild(jsScript);
 
 htmlDiv.innerHTML += htmlData;
 
-
+new WinBox({
+    title: "App Installer",
+    class: "appye-window",
+    background: "#588fe8",
+    x: "center",
+    y: "center",
+    url: URL.createObjectURL(new Blob([htmlDiv.outerHTML], { type: "text/html" })),
+})
 }
+
+installAppGUI();
