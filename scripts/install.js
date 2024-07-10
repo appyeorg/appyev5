@@ -1,6 +1,5 @@
 
 const mirrors = [
-  "https://git.basicfan.eu.org/KUKHUA/Appye/raw/branch/main/",
   "https://raw.githubusercontent.com/appyeorg/appyev5/main/",
   "https://raw.githack.com/appyeorg/appyev5/main/",
   "https://gitea.com/Unmoral1633/Appye/raw/branch/main/",
