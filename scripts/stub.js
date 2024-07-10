@@ -16,11 +16,26 @@ async function loadResources() {
         console.error(`ERROR: Could not locate required directories. Please ensure that Appye is installed correctly.`);
     }
 
+    //Get the directories for every app.
+    let appDir = await userDir.getDirectoryHandle("apps");
+
+    // Having the directory object in the window object makes the developer's life easier.
+    window.directory = {
+        user: userDir,
+        config: configDir,
+        system: systemDir,
+        dependencies: depsDir,
+        apps: {"global": appDir,}
+    }
+    // Make sure it's globally accessible. Not sure if this is necessary.
+    window.config;
+
     try {
         let configFile = await configDir.getFileHandle("config.json", { create: false });
         configFile = await configFile.getFile();
         configFile = await configFile.text();
         config = JSON.parse(configFile);
+        window.config = config;
     } catch(e){
         console.error(`ERROR: Could not load config file. Please ensure that Appye is installed correctly.`);
         return;

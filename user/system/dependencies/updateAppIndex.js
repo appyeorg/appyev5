@@ -14,6 +14,7 @@ async function updateAppIndex(){
       let metadataFile = await currentAppDirHandle.getFileHandle("metadata.json", { create: false });
       let metadata = await metadataFile.getFile();
       window.appIndex[currentAppDir.name] = JSON.parse(await metadata.text());
+      window.directory.apps[currentAppDir.name] = currentAppDirHandle;
     }
   }
 }
