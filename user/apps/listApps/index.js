@@ -42,10 +42,14 @@ async function loadListApp() {
         let appName = document.createElement("h2")
         appName.textContent = window.appIndex[currentApp].name;
         appHtml.appendChild(appName);
-        let description = document.createElement("p");
-        description.textContent = window.appIndex[currentApp].description;
-        description.style.wordBreak = "break-word";
-        appHtml.appendChild(description);
+
+        if(window.configText.listApps_Show_Description == true) {
+            let description = document.createElement("p");
+            description.textContent = window.appIndex[currentApp].description;
+            description.style.wordBreak = "break-word";
+            appHtml.appendChild(description);
+        }
+
         let icon = document.createElement("img");
         // Set the icon to fit the app grid
         icon.style.width = "60%";
