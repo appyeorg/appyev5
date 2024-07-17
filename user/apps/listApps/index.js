@@ -48,8 +48,8 @@ async function loadListApp() {
         appHtml.appendChild(description);
         let icon = document.createElement("img");
         // Set the icon to fit the app grid
-        icon.style.width = "50%";
-        icon.style.height = "50%";
+        icon.style.width = "60%";
+        icon.style.height = "60%";
         let currentAppDir = await  window.directory.apps.global.getDirectoryHandle(currentApp);
 
         if (!window.appIndex[currentApp].icon) {
