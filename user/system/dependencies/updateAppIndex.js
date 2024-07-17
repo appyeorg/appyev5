@@ -1,14 +1,15 @@
 async function updateAppIndex(){
   try {
-    const fs = await navigator.storage.getDirectory();
-    let userDir = await fs.getDirectoryHandle("user");
-    let appDir = await userDir.getDirectoryHandle("apps");
+    let appDir = window.directory.apps.global;
 
     let appList = appDir.values();
     window.appIndex = {};
     for await (let currentAppDir of appList){
       try {
         if (currentAppDir.kind = 'directory'){
+          if(currentAppDir.name == "global") {
+            continue;
+          }
           console.log("Indexed app " + currentAppDir.name)
           // Get the app's directory
           let currentAppDirHandle = await appDir.getDirectoryHandle(currentAppDir.name);
@@ -24,5 +25,16 @@ async function updateAppIndex(){
     }
   } catch (error) {
     console.error("ERROR: Failed to update index", error);
+  }
+
+  try {
+    let configFile = await window.directory.config.getFileHandle("config.json", { create: false });
+    configFile = await configFile.getFile();
+    configFile = await configFile.text();
+    config = JSON.parse(configFile);
+    window.configText = config;
+  } catch(e){
+    console.error(`ERROR: Could not load config file. Please ensure that Appye is installed correctly.`);
+    return;
   }
 }

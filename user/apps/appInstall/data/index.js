@@ -17,12 +17,8 @@ async function installFromZip() {
     console.log("ERROR: This ZIP might not have metadata included. " + e);
     return; // Added return to stop execution if metadata is not found
   }
-
-  // Check if the app is already installed
-  if (metadata.id in window.appIndex) {
-    console.log("ERROR: This app is already installed.");
-    return;
-  } else if (!metadata.id || !metadata.entryPoint) {
+  
+  if (!metadata.id || !metadata.entryPoint) {
     console.log("ERROR: This ZIP does not have the required metadata.");
     return;
   } else {

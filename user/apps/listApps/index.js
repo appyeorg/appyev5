@@ -3,7 +3,7 @@ async function loadListApp() {
     let myAppDir, dataDir;
 
     try {
-        myAppDir = await window.directory.apps.global.getDirectoryHandle("listApps");
+        myAppDir = window.directory.apps.listApps;
         dataDir = await myAppDir.getDirectoryHandle("data");
     } catch (e) {
         console.error(`ERROR: Could not locate required directories. Please ensure that Appye is installed correctly.`);
@@ -14,8 +14,8 @@ async function loadListApp() {
     try {
         let missingIconFile = await dataDir.getFileHandle("missingIcon.png", { create: false });
         missingIcon = await missingIconFile.getFile();
-        missingIcon = URL.createObjectURL(missingIcon); // Correctly create a URL for the missing icon
-        let cssDataFile = await dataDir.getFileHandle("index.css", { create: false });
+        missingIcon = URL.createObjectURL(missingIcon);
+        let cssDataFile = await window.directory.share.getFileHandle("appye-page.css", { create: false });
         cssData = await cssDataFile.getFile();
         cssData = await cssData.text();
     } catch (e) {
@@ -26,7 +26,6 @@ async function loadListApp() {
 
     let cssStyle = document.createElement("link");
     cssStyle.rel = "stylesheet";
-    // Correctly create a URL for the CSS blob
     let cssBlob = new Blob([cssData], { type: "text/css" });
     cssStyle.href = URL.createObjectURL(cssBlob);
     htmlDiv.appendChild(cssStyle);

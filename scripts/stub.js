@@ -6,12 +6,13 @@ let config;
 async function loadResources() {
     //Get OPFS root, ya'know so we can actually get files.
     const fs = await navigator.storage.getDirectory();
-    let configDir,depsDir,systemDir,userDir;
+    let configDir,depsDir,systemDir,userDir,shareDir;
     try {
         userDir = await fs.getDirectoryHandle("user");
         configDir = await userDir.getDirectoryHandle("config");
         systemDir = await userDir.getDirectoryHandle("system");
         depsDir = await systemDir.getDirectoryHandle("dependencies");
+        shareDir = await userDir.getDirectoryHandle("share");
     } catch(e){
         console.error(`ERROR: Could not locate required directories. Please ensure that Appye is installed correctly.`);
     }
@@ -21,21 +22,23 @@ async function loadResources() {
 
     // Having the directory object in the window object makes the developer's life easier.
     window.directory = {
+        root: fs,
         user: userDir,
+        share: shareDir,
         config: configDir,
         system: systemDir,
         dependencies: depsDir,
         apps: {"global": appDir,}
     }
     // Make sure it's globally accessible. Not sure if this is necessary.
-    window.config;
+    window.configText;
 
     try {
         let configFile = await configDir.getFileHandle("config.json", { create: false });
         configFile = await configFile.getFile();
         configFile = await configFile.text();
         config = JSON.parse(configFile);
-        window.config = config;
+        window.configText = config;
     } catch(e){
         console.error(`ERROR: Could not load config file. Please ensure that Appye is installed correctly.`);
         return;

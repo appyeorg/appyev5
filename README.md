@@ -21,22 +21,23 @@ The intall script should do the following:
 
 The global `window` object provides useful stuff for the app.
 
-`window.config` is the user's config file (this is not a file object, but a JSON object).
+`window.configText` is the user's config file (this is not a file object, but a JSON object).
 
 `window.directory` are shortcuts to the system's directories.
 The following directories are available:
 - `window.directory.user` is the user's home directory.
-- `window.directory.apps` is the directory where the apps
+- `window.directory.apps.global` is the directory where the apps are stored.
 - `window.directory.apps[app.id]` is the directory of the app with the id `app.id`. 
 - To get to the global apps directory, use `window.directory.apps.global`.
 - `window.directory.config` is the directory where the config(s) file is stored.
 - `window.directory.system` is the directory where the system files are stored.
 - `window.directory.dependencies` is the directory where the dependencies are stored.
+- `window.directory.share` is the directory where apps can store files that are shared between apps.
 
 Appye also provides the following async functions, these are stored in the dependencies directory:
 - `makeFile(opfsRoot, fileName, fileType, content)` creates a file.
 - `openApp(appID)` opens an app.
-- `updateAppIndex()` updates the app index, your install script should call this function after creating the app's content.
+- `updateAppIndex()` updates the app index, your install script should call this function after creating the app's content. This also updates other things like the config file.
 
 Please note that the best practice when loading in a app is to have the data (HTML, CSS, JS) in the app's directory and to load it in using blobs.
 
@@ -49,7 +50,7 @@ let htmlBlob = await htmlFile.getFile();
 let html = await htmlBlob.text();
 let divContainer = document.createElement("div");
 divContainer.innerHTML = html;
-// Do whatever modifications you need to do to the HTML
+// Do whatever modifications you need to do to the HTML, like injecting other CSS or JS files.
 new WinBox({
     title: "List of Apps",
     class: "appye-window",

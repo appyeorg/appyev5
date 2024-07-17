@@ -1,7 +1,7 @@
 async function installAppGUI() {
 //Get index.css from data
 let dataFolder = await window.directory.apps.appInstall.getDirectoryHandle("data", { create: false });
-let cssData = await dataFolder.getFileHandle("index.css", { create: false });
+let cssData = await window.directory.share.getFileHandle("appye-page.css", { create: false });
 cssData = await cssData.getFile();
 cssData = await cssData.text();
 
