@@ -23,7 +23,7 @@ async function installFromZip() {
     return;
   } else {
     console.log("INFO: Metadata is valid. Proceeding with installation.");
-    let installationPath = await window.directory.apps.global.getDirectoryHandle(metadata.id, { create: true });
+    let installationPath = await window.parent.directory.apps.global.getDirectoryHandle(metadata.id, { create: true });
     // Install files recursively from the ZIP
 
     // First get all the folders
@@ -75,7 +75,7 @@ async function installFromZip() {
         let contentMimeType = await content.type;
         console.log("INFO: File: " + filePath + " MimeType: " + contentMimeType);
         try {
-          await makeFile(installationPath, filePath, contentMimeType, content);
+          await window.parent.makeFile(installationPath, filePath, contentMimeType, content);
         } catch (error) {
           console.error("ERROR: Unable to create file " + error);
           return; 

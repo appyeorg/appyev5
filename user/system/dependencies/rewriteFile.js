@@ -159,6 +159,7 @@ async function rewriteFile(textContent, currentFS, config) {
         }
         console.log("INFO: Replaced HTML tags. ", doc);
         //Unreplace the rules.
+        textContent =doc.documentElement.outerHTML;
         for (let rule in config["replace-rules-html"]) {
             // This regex looks for the rule that's not followed by an even number of quotes till the end of the string.
             let regex = new RegExp(config["replace-rules-html"][rule] + '(?=(?:[^"]*"[^"]*")*[^"]*$)', 'g');
@@ -167,7 +168,8 @@ async function rewriteFile(textContent, currentFS, config) {
                 return rule;
             });
         }
-        return doc.documentElement.outerHTML;
+
+        return textContent;
     }
     return textContent;
 }
