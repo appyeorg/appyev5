@@ -22,7 +22,8 @@ async function handleRootRequestFromOPFS(request){
         const fs = await navigator.storage.getDirectory();
         let url = new URL(request.url);
         let path = url.pathname;
-        console.log(`INFO: Requested path: ${path}`);
+        path = path.slice(6);
+        console.log(`INFO: Requested path: ${path}`,url.pathname);
         let file = await fs.getFileHandle(path, { create: false });
         let fileContents = await file.getFile();
         let response = new Response(fileContents, {
