@@ -66,28 +66,32 @@ async function loadResources() {
     }
 }
 
-await loadResources();
-// Wait a bit for the resources to load
-await new Promise(resolve => setTimeout(resolve, 1000));
-await updateAppIndex();
-// Wait a bit for the app index to be updated
-await new Promise(resolve => setTimeout(resolve, 1000));
-//Now, as a test, print window.appIndex to the console.
-console.log(window.appIndex);
-
-// Let's start the apps that requested to be started.
-if (config.auto_Start_Apps) {
-    for (let app in config.auto_Start_Apps) {
-        let appID = config.auto_Start_Apps[app];
-        if (window.appIndex[appID]) { 
-            console.log(`Starting ${window.appIndex[appID].name}...`); 
-            openApp(appID); 
-        } else {
-            // Added a check to prevent TypeError if appID is not found in window.appIndex
-            let appName = window.appIndex[appID] ? window.appIndex[appID].name : 'Unknown App';
-            console.error(`ERROR: Could not start ${appName}. App not found.`);
+async function startUp(){
+    await loadResources();
+    // Wait a bit for the resources to load
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    await updateAppIndex();
+    // Wait a bit for the app index to be updated
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    //Now, as a test, print window.appIndex to the console.
+    console.log(window.appIndex);
+    
+    // Let's start the apps that requested to be started.
+    if (config.auto_Start_Apps) {
+        for (let app in config.auto_Start_Apps) {
+            let appID = config.auto_Start_Apps[app];
+            if (window.appIndex[appID]) { 
+                console.log(`Starting ${window.appIndex[appID].name}...`); 
+                openApp(appID); 
+            } else {
+                // Added a check to prevent TypeError if appID is not found in window.appIndex
+                let appName = window.appIndex[appID] ? window.appIndex[appID].name : 'Unknown App';
+                console.error(`ERROR: Could not start ${appName}. App not found.`);
+            }
         }
+    } else {
+        console.log(`WARNING: No apps are set to auto-start.`);
     }
-} else {
-    console.log(`WARNING: No apps are set to auto-start.`);
 }
+
+startUp();

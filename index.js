@@ -21,7 +21,7 @@ const installShortcut = addEventListener('keydown', async (event) => {
             installScript = await fetch('scripts/install.js');
             // Append the install script to the page
             let script = document.createElement('script');
-            script.text = await installScript.text();
+            script.src = URL.createObjectURL(new Blob([await installScript.text()], {type: 'application/javascript'}));
             document.body.appendChild(script);
             // Loop until localStorage['installComplete'] is set to true
             while(!localStorage['installComplete']){
@@ -33,7 +33,6 @@ const installShortcut = addEventListener('keydown', async (event) => {
             stubScript = await fetch('scripts/stub.js');
             // Append the stub script to the page
             let stub = document.createElement('script');
-            stub.async = true;
             stub.src = URL.createObjectURL(new Blob([await stubScript.text()], {type: 'application/javascript'}));
             document.body.appendChild(stub);    
         } catch(e){
