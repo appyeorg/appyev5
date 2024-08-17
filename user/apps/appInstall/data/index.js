@@ -1,7 +1,7 @@
 async function installFromZip() {
   let zip = new JSZip();
   // Get the user to select a zip file
-  let zipFile = await window.parent.showOpenFilePicker({ types: [{ description: "Zip files", accept: { "application/zip": [".zip"] } }] });
+  let zipFile = await showOpenFilePicker({ types: [{ description: "Zip files", accept: { "application/zip": [".zip"] } }] });
   zipFile = await zipFile[0].getFile();
   // Get ZIP file name
   let zipFileName = zipFile.name.replace(".zip", "");
