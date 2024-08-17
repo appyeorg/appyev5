@@ -6,7 +6,6 @@ async function installFromZip() {
   // Get ZIP file name
   let zipFileName = zipFile.name.replace(".zip", "");
   console.log("INFO: ZIP ID is " + zipFileName);
-  zipFile = await zipFile.arrayBuffer();
   zip = await zip.loadAsync(zipFile); // Corrected variable assignment
   let metadataFile = zip.file("metadata.json");
   let metadata;
