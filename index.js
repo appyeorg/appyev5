@@ -1,6 +1,6 @@
 const installShortcut = addEventListener('keydown', async (event) => {
     if(event.key === 'i'){
-        let opfsRoot,sw,scriptsDir;
+        let opfsRoot,sw;
         alert("Installing Appye (SW Enabled)...");
         try {
             opfsRoot = await navigator.storage.getDirectory();
@@ -13,13 +13,6 @@ const installShortcut = addEventListener('keydown', async (event) => {
             sw = await navigator.serviceWorker.register('sw.js');
         } catch(e){
             alert("Service Worker registration failed." + e);
-            return;
-        }
-
-        try {
-            scriptsDir = opfsRoot.getDirectoryHandle('scripts', {create: false})
-        } catch(e){
-            alert("Scripts directory not found." + e);
             return;
         }
 
@@ -41,9 +34,10 @@ const installShortcut = addEventListener('keydown', async (event) => {
             // Append the stub script to the page
             let stub = document.createElement('script');
             stub.text = await stubScript.text();
+            stub.async = true;
             document.body.appendChild(stub);    
         } catch(e){
-            alert("Failed to get scripts." + e);
+            alert("Failed to get scripts or run them." + e);
             return;
         }
 
