@@ -131,4 +131,4 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
     localStorage.setItem("installComplete", "true");
   }
 
-await InitFs();
+InitFs();
