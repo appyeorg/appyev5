@@ -17,7 +17,7 @@ self.addEventListener('install', event => {
     }
   });
 
-async function handleRootRequestFromOPFS(request){
+  async function handleRootRequestFromOPFS(request) {
     try {
         const fs = await navigator.storage.getDirectory();
         let url = new URL(request.url);
@@ -25,16 +25,28 @@ async function handleRootRequestFromOPFS(request){
         // Get everything after /root/
         path = path.substring(path.indexOf('/root/') + 6);
         console.log(`INFO: Requested path: ${path}`);
-        let file = await fs.getFileHandle(path, { create: false });
-        let fileContents = await file.getFile();
-        let response = new Response(fileContents, {
+        
+        // Split the path into parts
+        let parts = path.split('/');
+        
+        // Traverse the path
+        let currentDir = fs;
+        for (let i = 0; i < parts.length - 1; i++) {
+            currentDir = await currentDir.getDirectoryHandle(parts[i]);
+        }
+        
+        // Get the file handle
+        let fileHandle = await currentDir.getFileHandle(parts[parts.length - 1]);
+        let file = await fileHandle.getFile();
+        
+        let response = new Response(file, {
             headers: {
-                'Content-Type': fileContents.type
+                'Content-Type': file.type
             }
         });
         return response;
-    } catch(e){
-        let response = new Response('File not found', {
+    } catch (e) {
+        let response = new Response(`Unable to find file at path ${path}, full error is ${e}`, {
             status: 404,
             statusText: 'Not Found'
         });
