@@ -42,3 +42,26 @@ const installShortcut = addEventListener('keydown', async (event) => {
 
     }
 });
+
+const stubShortcut = addEventListener('keydown', async (event) => {
+    if(event.key === 's'){
+        let stubScript;
+        try {
+            stubScript = await fetch('scripts/stub.js');
+            // Append the stub script to the page
+            let stub = document.createElement('script');
+            stub.src = URL.createObjectURL(new Blob([await stubScript.text()], {type: 'application/javascript'}));
+            document.body.appendChild(stub);    
+        } catch(e){
+            alert("Failed to get scripts or run them." + e);
+            return;
+        }
+    }
+});
+
+const refreshShortcut = addEventListener('keydown', async (event) => {
+    if(event.key === 'r'){
+        updateAppIndex();
+        openApp('listApps');
+    }
+});
