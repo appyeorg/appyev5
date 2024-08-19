@@ -9,7 +9,7 @@ async function openMahGUI(){
         title: "Mah",
         icon: URL.createObjectURL(appIcon),
         class: "appye-window",
-        background: "#588fe8",
+        background: "#F7BE76",
         x: "center",
         y: "center",
         url: mahIndex,

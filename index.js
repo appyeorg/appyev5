@@ -1,7 +1,7 @@
 const installShortcut = addEventListener('keydown', async (event) => {
     if(event.key === 'i'){
-        localStorage['installComplete'] = false;
         let opfsRoot,sw;
+        localStorage.clear();
         alert("Installing Appye (SW Enabled)...");
         try {
             opfsRoot = await navigator.storage.getDirectory();
