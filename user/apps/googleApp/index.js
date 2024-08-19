@@ -1,6 +1,5 @@
 async function openGoogleGUI() {
-    let googleAppFolder = await window.directory.apps.googleApp;
-    let googleIcon = googleAppFolder.getFileHandle("icon.ico", { create: false });
+    let googleIcon = window.directory.apps.googleApp.getFileHandle("icon.ico", { create: false });
     googleIcon = await googleIcon.getFile();
 
 
