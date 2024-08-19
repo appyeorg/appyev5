@@ -1,0 +1,9 @@
+{
+    "name": "Desmos",
+    "id": "desmosApp",
+    "version": "1.0.0",
+    "description": "An app to graph functions using Desmos. Or just do 1 + 1.",
+    "author": "Pascal",
+    "icon": "icon.ico",
+    "entryPoint": "index.js"
+}
