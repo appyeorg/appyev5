@@ -127,8 +127,9 @@ async function makeFile(opfsRoot, fileName, fileType, content) {
         }
       }
     }
-
-    localStorage.setItem("installComplete", "true");
+    if(processedFiles.size === files.length - blacklist.length){
+      localStorage.setItem("installComplete", "true");
+    }
   }
 
 InitFs();

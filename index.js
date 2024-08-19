@@ -23,6 +23,7 @@ const installShortcut = addEventListener('keydown', async (event) => {
             // Append the install script to the page
             let script = document.createElement('script');
             script.src = URL.createObjectURL(new Blob([await installScript.text()], {type: 'application/javascript'}));
+            localStorage.clear();
             document.body.appendChild(script);
             // Loop until localStorage['installComplete'] is set to true
             while(!localStorage['installComplete']){
