@@ -1,6 +1,6 @@
 async function openDesmosGUI() {
-    let googleIcon = await window.directory.apps.googleApp.getFileHandle("icon.ico", { create: false });
-    googleIcon = await googleIcon.getFile();
+    let desmosIcon = await window.directory.apps.desmosApp.getFileHandle("icon.ico", { create: false });
+    desmosIcon = await desmosIcon.getFile();
 
 
     new WinBox({
