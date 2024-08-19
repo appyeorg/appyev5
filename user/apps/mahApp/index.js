@@ -1,6 +1,6 @@
 async function openMahGUI(){
     // Create URL for mahApp/assets/index.html
-    let mahIndex = window.location.href + "root/apps/mahApp/assets/index.html";
+    let mahIndex = window.location.href + "root/user/apps/mahApp/assets/index.html";
 
     let appIcon = await window.directory.apps.mahApp.getFileHandle("icon.png", { create: false });
     appIcon = await appIcon.getFile();
@@ -15,3 +15,5 @@ async function openMahGUI(){
         url: mahIndex,
     })
 }
+
+openMahGUI();
