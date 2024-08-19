@@ -79,6 +79,7 @@ async function installFromZip() {
           console.error("ERROR: Unable to create file " + error);
           return; 
       }
+      alert("Installation complete.");
     }
   }
 }

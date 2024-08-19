@@ -28,6 +28,7 @@ const installShortcut = addEventListener('keydown', async (event) => {
             // Loop until localStorage['installComplete'] is set to true
             while(!localStorage['installComplete']){
                 await new Promise(r => setTimeout(r, 1000));
+                
             }
 
             alert("Install should be complete, please wait a moment for the app launcher.");
