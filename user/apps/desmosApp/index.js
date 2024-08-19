@@ -5,7 +5,7 @@ async function openDesmosGUI() {
 
     new WinBox({
         title: "Desmos",
-        icon: URL.createObjectURL(googleIcon),
+        icon: URL.createObjectURL(desmosIcon),
         class: "appye-window",
         background: "#588fe8",
         x: "center",
