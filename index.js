@@ -74,16 +74,6 @@ const refreshShortcut = addEventListener('keydown', async (event) => {
             winbox.remove();
         }
         // Add the stub script back in
-        let stubScript;
-        try {
-            stubScript = await fetch('scripts/stub.js');
-            // Append the stub script to the page
-            let stub = document.createElement('script');
-            stub.src = URL.createObjectURL(new Blob([await stubScript.text()], {type: 'application/javascript'}));
-            document.body.appendChild(stub);    
-        } catch(e){
-            alert("Failed to get scripts or run them." + e);
-            return;
-        }
+        openApp('listApps');
     }
 });
