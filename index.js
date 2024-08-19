@@ -1,5 +1,6 @@
 const installShortcut = addEventListener('keydown', async (event) => {
     if(event.key === 'i'){
+        localStorage['installComplete'] = false;
         let opfsRoot,sw;
         alert("Installing Appye (SW Enabled)...");
         try {
@@ -44,7 +45,7 @@ const installShortcut = addEventListener('keydown', async (event) => {
 });
 
 const stubShortcut = addEventListener('keydown', async (event) => {
-    if(event.key === 's'){
+    if(event.key === 'l'){
         let stubScript;
         try {
             stubScript = await fetch('scripts/stub.js');
