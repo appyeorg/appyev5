@@ -78,8 +78,12 @@ async function loadListApp() {
 
     htmlDiv.appendChild(gridDiv);
 
+    let appIcon = await myAppDir.getFileHandle("icon.png", { create: false });
+    appIcon = await appIcon.getFile();
+
     new WinBox({
         title: "List of Apps",
+        icon: URL.createObjectURL(appIcon),
         class: "appye-window",
         background: "#588fe8",
         x: "center",

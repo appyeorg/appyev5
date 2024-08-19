@@ -37,8 +37,12 @@ htmlDiv.appendChild(jsScript);
 
 htmlDiv.innerHTML += htmlData;
 
+let appIcon = await window.directory.apps.appInstall.getFileHandle("icon.png", { create: false });
+appIcon = await appIcon.getFile();
+
 new WinBox({
     title: "App Installer",
+    icon: URL.createObjectURL(appIcon),
     class: "appye-window",
     background: "#588fe8",
     x: "center",
