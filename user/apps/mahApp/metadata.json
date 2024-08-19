@@ -1,0 +1,9 @@
+{
+    "name": "Mah",
+    "id": "mahApp",
+    "version": "1.0.0",
+    "description": "a html5 mahjong solitaire game",
+    "author": "Pascal",
+    "icon": "icon.png",
+    "entryPoint": "index.js"
+}
