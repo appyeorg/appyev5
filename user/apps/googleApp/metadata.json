@@ -1,0 +1,9 @@
+{
+    "name": "Google",
+    "id": "googleApp",
+    "version": "1.0.0",
+    "description": "A app to search the web using Google.",
+    "author": "Pascal",
+    "icon": "icon.ico",
+    "entryPoint": "index.js"
+}
