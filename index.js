@@ -74,6 +74,7 @@ const refreshShortcut = addEventListener('keydown', async (event) => {
         for(let winbox of winboxes){
             winbox.remove();
         }
+        updateAppIndex();
         // Add the stub script back in
         openApp('listApps');
     }
