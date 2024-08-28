@@ -76,6 +76,8 @@ const refreshShortcut = addEventListener('keydown', async (event) => {
         }
         updateAppIndex();
         // Add the stub script back in
+        // Async wait for 2 seconds to allow the app index to update
+        await new Promise(r => setTimeout(r, 2000));
         openApp('listApps');
     }
 });
