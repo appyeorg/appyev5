@@ -29,25 +29,6 @@ self.addEventListener('install', event => {
         // Split the path into parts
         let parts = path.split('/');
         
-        //check if the path is a directory and return a list of files
-        if (path.endsWith('/')) {
-            let currentDir = fs;
-            for (let i = 0; i < parts.length; i++) {
-                currentDir = await currentDir.getDirectoryHandle(parts[i]);
-            }
-            let entries = await currentDir.values();
-            let files = [];
-            for await (let entry of entries) {
-                files.push(entry.name);
-            }
-            let response = new Response(JSON.stringify(files), {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        }
-        
         // Traverse the path
         let currentDir = fs;
         for (let i = 0; i < parts.length - 1; i++) {
@@ -55,25 +36,8 @@ self.addEventListener('install', event => {
         }
         
         // Get the file handle
-        let fileHandle,file;
-        try {
-            fileHandle = await currentDir.getFileHandle(parts[parts.length - 1]);
-            let file = await fileHandle.getFile();
-        } catch(e){
-            //list files in the directory, removing the file name
-            let entries = currentDir.values();
-            let files = [];
-            for await (let entry of entries) {
-                files.push(entry.name);
-            }
-            let response = new Response(JSON.stringify(files), {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        }
-
+        let fileHandle = await currentDir.getFileHandle(parts[parts.length - 1]);
+        let file = await fileHandle.getFile();
         
         let response = new Response(file, {
             headers: {
