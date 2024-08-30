@@ -3,64 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnSmart Academy</title>
-    <link rel="stylesheet" href="user/share/appye-page.css">
-    <script src="index.js"></script>
+    <title>EduLearn - Your Path to Knowledge</title>
+    <link rel="stylesheet" href="web/assets/index.css">
+    <script src="web/assets/index.js"></script>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
-        <h1>Welcome to LearnSmart Academy</h1>
-        <p>Your Gateway to Knowledge</p>
+        <nav>
+            <div class="logo">EduLearn</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#courses">Courses</a></li>
-            <li><a href="#admissions">Admissions</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
     <main>
-        <!-- About Us Section -->
-        <section id="about">
-            <h2>About Us</h2>
-            <p>LearnSmart Academy is dedicated to providing high-quality education to students worldwide. Our mission is to empower learners with the skills and knowledge they need to succeed in their careers.</p>
+        <section id="home" class="hero">
+            <h1>Welcome to EduLearn</h1>
+            <p>Empowering minds through quality education</p>
+            <a href="#courses" class="cta-button">Explore Courses</a>
         </section>
 
-        <!-- Courses Section -->
         <section id="courses">
             <h2>Our Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <img src="web/img/math.jpg" alt="Mathematics">
+                    <h3>Mathematics</h3>
+                    <p>Master the fundamentals of mathematics</p>
+                    <p>Photo by <a href="https://unsplash.com/@antoine1003?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Antoine Dautry</a> on <a href="https://unsplash.com/photos/mathematics-computation-05A-kdOH6Hw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                </div>
+                <div class="course-card">
+                    <img src="web/img/science.jpg" alt="Science">
+                    <h3>Science</h3>
+                    <p>Explore the wonders of the natural world</p>
+                    <p>Photo by <a href="https://unsplash.com/@halacious?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hal Gatewood</a> on <a href="https://unsplash.com/photos/purple-and-pink-plasma-ball-OgvqXGL7XO4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                </div>
+                <div class="course-card">
+                    <img src="web/img/english.jpg" alt="Literature">
+                    <h3>Literature</h3>
+                    <p>Dive into the world of books and storytelling</p>
+                    <p>Photo by <a href="https://unsplash.com/@jaredd?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jaredd Craig</a> on <a href="https://unsplash.com/photos/view-of-floating-open-book-from-stacked-books-in-library-HH4WBGNyltc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                </div>
+                <div class="course-card">
+                    <img src="web/img/cs.jpg" alt="Computer Science">
+                    <h3>Computer Science</h3>
+                    <p>Learn the principles of computing and programming</p>
+                    <p>Photo by <a href="https://unsplash.com/@oscnord?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Oscar Nord</a> on <a href="https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-lines-on-it-MuJHwDHbXUk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>EduLearn is dedicated to providing high-quality education to learners worldwide. Our expert instructors and innovative teaching methods ensure an engaging learning experience.</p>
+            <p>We believe in the power of education to transform lives and communities. Our mission is to make learning accessible, affordable, and enjoyable for everyone.</p>
+            <h3>Our Core Values</h3>
             <ul>
-                <li>Introduction to Computer Science</li>
-                <li>Data Science and Analytics</li>
-                <li>Web Development Basics</li>
-                <li>Business Management</li>
+                <li>Excellence in Education</li>
+                <li>Inclusivity and Diversity</li>
+                <li>Innovation in Teaching</li>
+                <li>Commitment to Learners</li>
+                <li>Continuous Improvement</li>
             </ul>
+            <h3>Our Story</h3>
+            <p>Founded in 2010, EduLearn was created by a group of passionate educators and technologists who wanted to make a difference in the world of education. Their vision was to harness the power of technology to make learning more accessible and effective.</p>
         </section>
 
-        <!-- Admissions Section -->
-        <section id="admissions">
-            <h2>Admissions</h2>
-            <p>Join our community of learners today! Our admissions process is simple and straightforward. Contact us for more information on how to apply.</p>
-        </section>
-
-        <!-- Contact Section -->
         <section id="contact">
             <h2>Contact Us</h2>
-            <p>Email: info@learnsmartacademy.com</p>
-            <p>Phone: +123-456-7890</p>
-            <p>Address: 123 Education Lane, Knowledge City, EduLand</p>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </section>
     </main>
 
-    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 LearnSmart Academy. All rights reserved.</p>
     </footer>
 </body>
 </html>
