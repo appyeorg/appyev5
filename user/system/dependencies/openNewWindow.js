@@ -1,14 +1,19 @@
 async function pipWindow(url,html,winBoxWindow,) {
     const pipWindow = await documentPictureInPicture.requestWindow();
     pipWindow.addEventListener('pagehide', () => {
-        openNewWindow(winBoxWindow);
+        winBoxWindow.show();
     });
-
-    if(url){
-        pipWindow.document.location = url;
-    } else if(html){
-        pipWindow.document.body.innerHTML = html;
+    pipWindow.document.body = winBoxWindow.body;
+    pipWindow.document.head = winBoxWindow.head;
+    pipWindow.document.title = winBoxWindow.title;
+    // Copy favicon
+    if(winBoxWindow.icon){
+        let icon = document.createElement("link");
+        icon.rel = "icon";
+        icon.href = winBoxWindow.icon;
+        pipWindow.document.head.appendChild(icon);
     }
+    winBoxWindow.hide();
 }
 async function openNewWindow(winboxObject,configObject){
     /*
@@ -35,6 +40,7 @@ async function openNewWindow(winboxObject,configObject){
            class: "wb-custom",
            image: window.location.href + "root/user/share/winbox_icons/picture_in_picture.png",
             click: function(){
+                console.log("PIP");
                 pipWindow(winboxObject.url,winboxObject.html,winboxObject);
             }
         });
