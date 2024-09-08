@@ -1,9 +1,5 @@
 async function pipWindow(url,html,winBoxWindow,) {
     const pipWindow = await documentPictureInPicture.requestWindow();
-    pipWindow?.height = winBoxWindow?.height;
-    pipWindow?.width = winBoxWindow?.width;
-    pipWindow?.top = winBoxWindow?.top;
-    pipWindow?.left = winBoxWindow?.left;
     pipWindow.addEventListener('pagehide', () => {
         openNewWindow(winBoxWindow);
     });
@@ -30,19 +26,14 @@ async function openNewWindow(winboxObject,configObject){
     List of features:
     - Picture-in-picture (pip)
     */
-    // Get icon folder
-    let iconFolder = window.directory.user.getDirectoryHandle("share");
-    iconFolder = await iconFolder.getDirectoryHandle("winbox_icons");
 
     let newWindow = new WinBox(winboxObject);
     
     if(configObject?.pip !== false && "documentPictureInPicture" in window){
-        let pipon = iconFolder.getFileHandle("picture_in_picture.png");
-        pipon = await pipon.getFile();
         newWindow.addControl({
            index: 0,
            class: "wb-custom",
-           image: URL.createObjectURL(pipon),
+           image: window.location.href + "root/user/share/winbox_icons/picture_in_picture.png",
             click: function(){
                 pipWindow(winboxObject.url,winboxObject.html,winboxObject);
             }
