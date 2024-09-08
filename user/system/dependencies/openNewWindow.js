@@ -1,11 +1,13 @@
-async function pipWindow(winBoxWindow) {
+async function pipWindow(winBoxWindow,winboxConfig) {
     const pipWindow = await documentPictureInPicture.requestWindow({
         width: winBoxWindow.width,
         height: winBoxWindow.height,
     });
 
     pipWindow.addEventListener('pagehide', () => {
-        winBoxWindow.show();
+        winboxConfig.width = pipWindow.innerWidth;
+        winboxConfig.height = pipWindow.innerHeight;
+        openNewWindow(winboxConfig);
     });
 
     pipWindow.document.body.innerHTML = winBoxWindow.body.innerHTML;
@@ -26,7 +28,7 @@ async function pipWindow(winBoxWindow) {
     }
     `;
     pipWindow.document.head.appendChild(style);
-    winBoxWindow.hide();
+    winBoxWindow.close();
 }
 
 async function openNewWindow(winboxObject,configObject){
@@ -55,7 +57,7 @@ async function openNewWindow(winboxObject,configObject){
            image: window.location.href + "root/user/share/winbox_icons/picture_in_picture.png",
             click: function(){
                 console.log("PIP");
-                pipWindow(newWindow);
+                pipWindow(newWindow,winboxObject);
             }
         });
     }
