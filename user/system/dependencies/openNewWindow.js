@@ -1,20 +1,34 @@
-async function pipWindow(url,html,winBoxWindow,) {
-    const pipWindow = await documentPictureInPicture.requestWindow();
+async function pipWindow(winBoxWindow) {
+    const pipWindow = await documentPictureInPicture.requestWindow({
+        width: winBoxWindow.width,
+        height: winBoxWindow.height,
+    });
+
     pipWindow.addEventListener('pagehide', () => {
         winBoxWindow.show();
     });
-    pipWindow.document.body = winBoxWindow.body;
-    pipWindow.document.head = winBoxWindow.head;
-    pipWindow.document.title = winBoxWindow.title;
-    // Copy favicon
-    if(winBoxWindow.icon){
-        let icon = document.createElement("link");
-        icon.rel = "icon";
-        icon.href = winBoxWindow.icon;
-        pipWindow.document.head.appendChild(icon);
+
+    pipWindow.document.body.innerHTML = winBoxWindow.body.innerHTML;
+    // Create new style element
+    const style = document.createElement('style');
+    style.innerHTML = `
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: block;
     }
+    `;
+    pipWindow.document.head.appendChild(style);
     winBoxWindow.hide();
 }
+
 async function openNewWindow(winboxObject,configObject){
     /*
     winboxObject is a JSON object that contains the window's properties, 
@@ -41,7 +55,7 @@ async function openNewWindow(winboxObject,configObject){
            image: window.location.href + "root/user/share/winbox_icons/picture_in_picture.png",
             click: function(){
                 console.log("PIP");
-                pipWindow(winboxObject.url,winboxObject.html,winboxObject);
+                pipWindow(newWindow);
             }
         });
     }
