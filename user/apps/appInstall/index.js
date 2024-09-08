@@ -49,7 +49,7 @@ let winboxObject ={
     y: "center",
     url: URL.createObjectURL(new Blob([htmlDiv.outerHTML], { type: "text/html" })),
 }
-openNewWindow(winboxObject);
+openNewWindow(winboxObject,{pip:false});
 
 }
 
