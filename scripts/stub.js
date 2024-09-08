@@ -64,6 +64,12 @@ async function loadResources() {
             document.head.appendChild(fileDocumentObject);
         }
     }
+
+    // Load Google font Icons
+    let googleFonts = document.createElement("link");
+    googleFonts.rel = "stylesheet";
+    googleFonts.href = "https://fonts.googleapis.com/icon?family=Material+Icons";
+    document.head.appendChild(googleFonts);
 }
 
 async function startUp(){

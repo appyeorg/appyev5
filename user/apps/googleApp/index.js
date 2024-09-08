@@ -3,7 +3,7 @@ async function openGoogleGUI() {
     googleIcon = await googleIcon.getFile();
 
 
-    new WinBox({
+    let winboxObject ={
         title: "Google",
         icon: URL.createObjectURL(googleIcon),
         class: "appye-window",
@@ -11,7 +11,8 @@ async function openGoogleGUI() {
         x: "center",
         y: "center",
         url: "https://www.google.com?igu=1",
-    })
+    }
+    openNewWindow(winboxObject);
 
 }
 

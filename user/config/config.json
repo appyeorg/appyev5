@@ -1,5 +1,5 @@
 {
-    "included_Dependencies": ["winbox.js", "makeFile.js", "updateAppIndex.js", "openApp.js", "rewriteFile.js", "appye-window.css"],
+    "included_Dependencies": ["winbox.js", "makeFile.js", "updateAppIndex.js", "openApp.js", "rewriteFile.js","openNewWindow.js", "appye-window.css"],
     "auto_Start_Apps": ["listApps"],
     "listApps_Show_Description": false
 }

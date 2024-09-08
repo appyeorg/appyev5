@@ -2,8 +2,7 @@ async function openDesmosGUI() {
     let desmosIcon = await window.directory.apps.desmosApp.getFileHandle("icon.ico", { create: false });
     desmosIcon = await desmosIcon.getFile();
 
-
-    new WinBox({
+    let winboxObject ={
         title: "Desmos",
         icon: URL.createObjectURL(desmosIcon),
         class: "appye-window",
@@ -11,7 +10,8 @@ async function openDesmosGUI() {
         x: "center",
         y: "center",
         url: "https://www.desmos.com/calculator",
-    })
+    }
+    openNewWindow(winboxObject);
 
 }
 

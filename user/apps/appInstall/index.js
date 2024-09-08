@@ -40,7 +40,7 @@ htmlDiv.innerHTML += htmlData;
 let appIcon = await window.directory.apps.appInstall.getFileHandle("icon.png", { create: false });
 appIcon = await appIcon.getFile();
 
-new WinBox({
+let winboxObject ={
     title: "App Installer",
     icon: URL.createObjectURL(appIcon),
     class: "appye-window",
@@ -48,7 +48,9 @@ new WinBox({
     x: "center",
     y: "center",
     url: URL.createObjectURL(new Blob([htmlDiv.outerHTML], { type: "text/html" })),
-})
+}
+openNewWindow(winboxObject);
+
 }
 
 installAppGUI();

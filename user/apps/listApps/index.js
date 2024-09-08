@@ -80,8 +80,8 @@ async function loadListApp() {
 
     let appIcon = await myAppDir.getFileHandle("icon.png", { create: false });
     appIcon = await appIcon.getFile();
-
-    new WinBox({
+    
+    let winboxObject ={
         title: "List of Apps",
         icon: URL.createObjectURL(appIcon),
         class: "appye-window",
@@ -89,7 +89,8 @@ async function loadListApp() {
         x: "center",
         y: "center",
         url: URL.createObjectURL(new Blob([htmlDiv.outerHTML], { type: "text/html" })),
-    })
+    }
+    openNewWindow(winboxObject);
 }
 
 loadListApp();
